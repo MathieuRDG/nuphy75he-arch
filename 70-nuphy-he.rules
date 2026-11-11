@@ -1,0 +1,9 @@
+# NuPhy HE keyboards (vendor 19f5): Air75 HE 6120/6138, Air60 HE fee0, Field75 HE fe70/fe71,
+# Field75 HE V2 6132, Halo65 HE 6112, Halo65 HE Pro 6113, BH65 HE 6130/6135, Gem80 HE 6100.
+#
+# hidraw access to the configuration interface only (USB interface 1, the one
+# the NuPhyIO web driver talks to), for the person sitting at the machine. The
+# interfaces that carry what is typed are left alone. uaccess has to be tagged
+# before 73-seat-late.rules, hence the 70- prefix.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="6120|6138|fee0|fe70|fe71|6132|6112|6113|6130|6135|6100", ENV{NUPHY_HE}="1"
+ENV{NUPHY_HE}=="1", ATTRS{bInterfaceNumber}=="01", TAG+="uaccess"
